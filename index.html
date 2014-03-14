@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hackerspace NTNU</title>
+<link rel='stylesheet' href='style.css'>
+<script type='text/javascript' src='instafeed.min.js'></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+var subscribe = function() {
+    $.ajax({
+type: "POST",
+url: "https://lists.ansatt.ntnu.no/idi.ntnu.no",
+data: {
+"list": "hackerspace",
+"action": "subrequest",
+"email": $("#email").val(),
+},
+complete: getPassword,
+})
+}
+
+var getPassword = function(data) {
+    $("#emailwrap").hide();
+    $("#passwrap").show();
+}
+
+var sendPass = function() {
+    $.ajax({
+type: "POST",
+url: "https://lists.ansatt.ntnu.no/idi.ntnu.no",
+data: {
+"passwd": $("#password").val(),
+"email": $("#email").val(),
+"list": "hackerspace",
+"action": "subrequest",
+"previous_list": "hackerspace",
+"previous_action": "subrequest",
+"action_subscribe": "Subscribe",
+},
+complete: thanks,
+})
+}
+
+var thanks = function() {
+    $("#passwrap").hide()
+        $("#thanks").show()
+}
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<script type='text/javascript'>
+var feed = new Instafeed({
+get: 'tagged',
+tagName: 'hackerspacentnu',
+clientId: '5c6da92acfc24beba747d261b46009ee',
+limit: 6
+});
+feed.run();
+</script>
+<div class='block header'>
+Hackerspace NTNU
+</div>
+<div class='block content'>
+Hackerspace NTNU er et pilotprosjekt i regi IDI ved NTNU i samarbeid med Abakus og Online. 
+<br>Vi holder til på drivhuset for studenter ved IDI til å leke med!
+</div>
+<div class='block content'>
+<p>Har du lyst lyst til å prøve en 3D printer, Oculus Rift, eller kanskje lære deg å programmere for en arduino? Da er Hackerspace NTNU tingen for deg! </p>
+
+<p>Vi holder første åpningsdag på tirsdag 18.mars på drivhuset, og det vil være mulighet til å få prøvd seg på disse teknologiene:
+
+<ul class='list'>
+<li><a href='http://www.arduino.cc/'>Arduino</a></li>
+<li><a href='http://www.raspberrypi.org/'>Raspberry Pi</a></li>
+<li><a href='http://www.oculusvr.com/'>Oculus Rift</a></li>
+<li><a href='http://store.makerbot.com/replicator'>3D printer</a></li>
+<li><a href='http://store.makerbot.com/digitizer'>3D scanner</a></li>
+<li><a href='http://littlebits.cc/'>Little Bits</a></li>
+<li><a href='http://www.makeymakey.com/'>Makey Makey</a></li>
+<li><a href='https://www.leapmotion.com/'>Leap Motion</a></li>
+</ul>
+</p>
+
+<p>Og best av alt: Det kommer til å komme mer, basert på hva du ønsker deg!</p>
+</div>
+
+<div class='block email'>
+Registrer deg til vår mailingliste:
+<div class='emailform'><input type='email' id='email'><input type='submit' value='Registrer' id="subscribe" onclick="subscribe(); return false;"></div>
+<div id="passwrap" style="display:none">
+<p>You should have received a password in your email! Please enter it here to confirm your identity:</p>
+<input id="password" type="text" placeholder="Recieved password">
+<input type="submit" id="confirm" onclick="sendPass(); return false;" value="Confirm">
+</div>
+<div id="thanks" style="display:none">
+<h3 style="color:green">Yey!</h3>
+<p>If the password you provided is correct, then you will be subscribed to the email list!</br>
+If this is not the case, then either try again or subscribe manually <a href="https://lists.ansatt.ntnu.no/idi.ntnu.no/info/hackerspace">here</a></p>
+</div>
+</div>
+
+<div class='block instagram'>
+<h2>#hackerspacentnu</h2>
+<div id='instafeed'></div>
+</div>
+</body>
+</html>
