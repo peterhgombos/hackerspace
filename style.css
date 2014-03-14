@@ -22,7 +22,7 @@ margin: 20px;
         margin-left: auto;
         margin-right: auto;
 width: 95%;
-background: rgba(177, 177, 177, 0.4);
+background: rgba(150, 150, 150, 0.8);
 }
 
 .header {
@@ -30,10 +30,13 @@ background: rgba(177, 177, 177, 0.4);
     font-size: 100px;
     text-align: center;
     font-family: sans-serif;
+    background: rgba(150, 150, 150, 0.6);
 }
 
 .content {
 padding: 20px;
+    font-family: sans-serif;
+
 }
 
 .email {
@@ -68,4 +71,8 @@ input[type=submit]:hover {
 .instagram {
     font-family: sans-serif;
     text-align: center;
+}
+
+.instapic {
+    padding: 3px;
 }
